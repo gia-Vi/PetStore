@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <!-- default header -->
+
+  <head th:replace="/fragments/header.html :: header(${pageTitle})"> </head>
+
+  <!-- more attribute -->
+  <head>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+  <head>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+    <link rel="stylesheet" th:href="@{/admin/index.css}" />
+  </head>
+
+  <body>
+    <!--nav-->
+    <section th:replace="/fragments/navbar.html :: navbar()"></section>
+
+    <!--option-->
+    <div class="container my-3">
+      <div class="row">
+        <div class="col">
+          <!--product manager-->
+          <div class="card" bis_skin_checked="1">
+            <div class="card-body" bis_skin_checked="1">
+              <h3 class="card-title">Quản lý sản phẩm</h3>
+              <p class="card-text">Xem và quản lý các sản phẩm trên web</p>
+              <a th:href="@{/admin/products}" class="card-link"><button>Click here to manage</button></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col">
+          <!--user manager-->
+          <div class="card" bis_skin_checked="1">
+            <div class="card-body" bis_skin_checked="1">
+              <h3 class="card-title">Quản lý khách hàng</h3>
+              <p class="card-text">Xem thông tin và quản lý khách hàng</p>
+              <a th:href="@{/admin/users}" class="card-link"><button>Click here to manage</button></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col">
+          <!--order manager-->
+          <div class="card" bis_skin_checked="1">
+            <div class="card-body" bis_skin_checked="1">
+              <h3 class="card-title">Quản lý đơn hàng</h3>
+              <p class="card-text">Xem chi tiết và quản lý đơn hàng</p>
+              <a th:href="@{/admin/orders}" class="card-link" style="font-size: 15px; padding: 5px 10px;"><button>Click here to manage</button></a>
+            </div>
+          </div>
+        </div>
+
+        <!--other manager-->
+      </div>
+    </div>
+
+    <!--footer-->
+    <footer th:replace="/fragments/footer.html :: footer()"></footer>
+  </body>
+</html>

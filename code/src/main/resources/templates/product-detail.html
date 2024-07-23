@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<!-- default header -->
+
+<head th:replace="fragments/header.html :: header(${pageTitle})">
+</head>
+
+<!-- more attribute -->
+
+<head>
+  <title th:text="#{pet.html.title.name}"></title>
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <style>
+    .material-symbols-rounded {
+      font-variation-settings:
+        'FILL' 0,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 48
+    }
+  </style>
+
+
+  <link rel="stylesheet" th:href="@{/css/style.css}" />
+  <link rel="stylesheet" th:href="@{/css/productDetail-style.css}" />
+</head>
+
+<body>
+  <!--nav-->
+  <section th:replace="fragments/navbar.html :: navbar()"></section>
+
+  <!-- product detail -->
+  <section th:if="${product != null}" id="prodetails" class="section-p1">
+    <div class="single-pro-img" style="padding-bottom: 20px;">
+      <img th:src="*{product.thumbnail?.get(0)}" width="100%" id="MainImg" alt="" class="fade-out" style="margin-bottom: 15px;"/>
+
+      <div class="smaill-img-group">
+        <div th:each="thumbnail : ${product.thumbnail}" class="small-img-col">
+          <img th:src="*{thumbnail}" width="100%" class="small-img" alt="" />
+        </div>
+      </div>
+    </div>
+
+    <div class="single-pro-details">
+      <!-- common info -->
+      <h5 th:text="*{product.category.name}"></h5>
+      <h4 th:text="*{product.name}" class="product-name"></h4>
+      <h2 th:text="${product.price}" ></h2>
+
+      <!-- description -->
+      <h4 th:text="#{pet.html.prodetails.description}" class="pro-descript"></h4>
+      <span th:text="*{product.description}" style="font-weight: 430;"></span>
+
+      <!-- area for user -->
+      <th:block th:if="${isAdmin != true}">
+        <form th:action="@{/cart/addProduct(id=${product.id})}" th:object="${cartOnlyQuantity}" method="post">
+          <!-- subtract button -->
+          <button type="button" onclick="decrementValue()">
+            <span class="material-symbols-rounded">
+              remove
+            </span>
+          </button>
+          <!-- number -->
+          <input id="number" type="number" value="1" min="1" max="99" th:field="*{quantity}" readonly />
+          <!-- plus button -->
+          <button type="button" onclick="incrementValue()">
+            <span class="material-symbols-rounded">
+              add
+            </span>
+          </button>
+
+          <!-- add -->
+          <input type="submit" value="Thêm vào giỏ hàng" class="normal" style="font-weight: 600;">
+        </form>
+      </th:block>
+
+      
+    </div>
+  </section>
+
+  <!--footer nè-->
+  <footer th:replace="fragments/footer.html :: footer()"></footer>
+
+
+  <script th:src="@{/js/script.js}"></script>
+  <script th:src="@{/js/productDetail.js}"></script>
+</body>
+
+</html>
